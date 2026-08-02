@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: slv_customers
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+
+      - name: account_id
+        tests:
+          - unique
