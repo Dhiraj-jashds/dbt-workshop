@@ -1,0 +1,4 @@
+as_of_date,customer_id,customer_name,email,account_id,branch,city,account_type,kyc_status,balance,customer_since
+2026-01-01,C001,Customer 1,CUSTOMER1@NOVABANK.COM,A1001,Pune,Pune,Savings,VERIFIED,50000,2020-01-04
+2026-01-01,C002,Customer 2,customer2@novabank.com,A1002,Mumbai,Mumbai,Current,VERIFIED,20000,2021-06-15
+2026-01-01,C003,Customer 3,customer3@novabank.com,A1003,Delhi,Delhi,Savings,PENDING,15000,2023-11-10

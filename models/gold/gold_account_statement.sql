@@ -1,11 +1,23 @@
 {{ config(materialized='table') }}
 
-select
-    c.customer_name,
+select 
     t.transaction_id,
     t.transaction_datetime,
+    t.from_account as account_id,
+    'CREDIT' as movement_type,
     t.amount,
-    t.transaction_type
+    t.channel,
+    t.status
 from {{ ref('slv_transactions') }} t
-join {{ ref('slv_customers') }} c
-on t.from_account = c.account_id
+
+union all
+
+select 
+    t.transaction_id,
+    t.transaction_datetime,
+    t.to_account as account_id,
+    'DEBIT' as movement_type,
+    t.amount,
+    t.channel,
+    t.status
+from {{ ref('slv_transactions') }} t

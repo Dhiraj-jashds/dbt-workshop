@@ -1,13 +1,24 @@
-{{ config(materialized='table') }}
+{{
+    config(
+        materialized='incremental',
+        unique_key='transaction_id',
+        on_schema_change='append_new_columns'
+    )
+}}
 
-select
+select 
     transaction_id,
-    cast(transaction_datetime as timestamp) as transaction_datetime,
+    transaction_datetime,
+    cast(transaction_datetime as date) as transaction_date,
     from_account,
     to_account,
-    upper(transaction_type) as transaction_type,
+    upper(trim(transaction_type)) as transaction_type,
     amount,
-    status,
-    channel
+    upper(trim(status)) as status,
+    upper(trim(channel)) as channel,
+    trim(remarks) as remarks
 from {{ ref('brz_transactions') }}
-where amount > 0
+
+{% if is_incremental() %}
+  where transaction_datetime > (select max(transaction_datetime) from {{ this }})
+{% endif %}
