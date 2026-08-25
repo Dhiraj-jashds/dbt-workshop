@@ -1,14 +1,14 @@
 {{ config(materialized='table') }}
 
-select
+select 
     customer_id,
-    upper(customer_name) as customer_name,
-    lower(email) as email,
+    trim(customer_name) as customer_name,
+    lower(trim(email)) as email,
     account_id,
-    branch,
-    city,
-    account_type,
-    kyc_status,
-    balance,
-    as_of_date
+    upper(trim(branch)) as branch,
+    upper(trim(city)) as city,
+    upper(trim(account_type)) as account_type,
+    upper(trim(kyc_status)) as kyc_status,
+    opening_balance,
+    customer_since
 from {{ ref('brz_customers') }}
