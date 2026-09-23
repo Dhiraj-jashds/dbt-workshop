@@ -1,0 +1,5 @@
+transaction_id,transaction_datetime,from_account,to_account,transaction_type,amount,status,channel,remarks
+TXN00001,2026-01-01 09:10:00,A1001,A1002,UPI,1000,SUCCESS,Branch,Daily transfer
+TXN00002,2026-01-01 10:15:00,A1002,A1003,NEFT,5000,SUCCESS,Mobile,Rent payment
+TXN00003,2026-01-01 11:30:00,A1001,A1003,IMPS,2000,FAILED,Online,Server timeout
+TXN00004,2026-01-02 08:00:00,A1003,A1001,RTGS,3000,SUCCESS,Branch,Vendor payout
